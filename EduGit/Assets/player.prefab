@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1197777595082009096}
   - component: {fileID: 6279004978516223776}
+  - component: {fileID: -75898893315218815}
+  - component: {fileID: 2409752718913094459}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -45,6 +47,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec1e984234b3ad4096dd7ea4ca36f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rigidbody: {fileID: -75898893315218815}
+  speed: 10
+  Hlth: 0
+  coin: 0
+  ObstacleTag: Obstacle
+  EndLineTag: EndLine
+  Coin: Coin
+  Ground: Ground
+  movement: {x: 0, y: 0, z: 0}
+  GroundCheck: 1
+--- !u!54 &-75898893315218815
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679414870497805604}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &2409752718913094459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679414870497805604}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 500
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5974388, y: 7.1534224, z: 3.4626162}
+  m_Center: {x: 0.038315058, y: 3.523982, z: 0.67024505}
 --- !u!1001 &307136541699812413
 PrefabInstance:
   m_ObjectHideFlags: 0
