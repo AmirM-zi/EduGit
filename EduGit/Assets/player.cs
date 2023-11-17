@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         MoveRunner(movement);
         if (Input.GetKey(KeyCode.Space) && GroundCheck)
         {
-            animator.SetBool("Jump",true);
+            animator.SetTrigger("Jump");
             Rigidbody.AddForce(new Vector3(0, 30, -3) * speed * Time.deltaTime, ForceMode.Impulse);
         }
       
