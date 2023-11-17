@@ -14,19 +14,29 @@ public class Player : MonoBehaviour
     public Vector3 movement;
     public Action OnEndLine,OnGetPoint,gameOver;
     public bool GroundCheck=true;
-    
+    public Animator animator;
+
     void FixedUpdate()
     {
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
         MoveRunner(movement);
         if (Input.GetKey(KeyCode.Space) && GroundCheck)
         {
-            
+            animator.SetBool("Jump",true);
             Rigidbody.AddForce(new Vector3(0, 30, -3) * speed * Time.deltaTime, ForceMode.Impulse);
         }
-
+      
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.J))
+        {
+            Debug.Log("J");
+            animator.SetTrigger("Jump");
+        } //Debug.Log(animator.GetBool("Jump"));
+    }
+
     void MoveRunner(Vector3 direction)
     {
         var move = (transform.position + (direction * speed * Time.deltaTime));
@@ -43,7 +53,6 @@ public class Player : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.tag);
-        Debug.Log(GroundCheck);
         /*if(collision.gameObject.tag==Coin)
         {
             coin = coin + 1;
@@ -59,8 +68,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == Ground)
         {
+            animator.SetBool("Jump",false);
             GroundCheck = true;
-            Debug.Log(GroundCheck);
         }
 
         /*if (collision.gameObject.tag == ObstacleTag)
@@ -73,11 +82,12 @@ public class Player : MonoBehaviour
                 gameOver.Invoke();
         }*/
     }
-
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("zamin");
+        
         if (collision.gameObject.tag == Ground)
+        {
             GroundCheck = false;
+        }
     }
 }
