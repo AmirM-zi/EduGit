@@ -13,11 +13,14 @@ public class GameManager : MonoBehaviour
     public Vector3 PlayerPos;
     public Vector3 PlayerSpawn;
     public Envirement Envirement;
+    public Train train;
+    public Shooting shooting;
     private void Start()
     { 
         var env = Instantiate(Envirement);
        player = Instantiate(this.playerprefab);
        SetPlayerStartPos(env,player);
+       train = Instantiate(train);
     }
 
     private void Update()
@@ -30,8 +33,13 @@ public class GameManager : MonoBehaviour
         catch (Exception)
         {
             return;
+        } 
+        train.GetMove(PlayerPos);
+        if (Input.GetKey(KeyCode.C))
+        {
+            //bullet = Instantiate(bullet);
+            shooting.Shoot(PlayerPos);
         }
-      
     }
     
     private void SetPlayerStartPos(Envirement env,GameObject player)

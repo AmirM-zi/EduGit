@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Action OnEndLine,OnGetPoint,gameOver;
     public bool GroundCheck=true;
     public Animator animator;
+    private int flag;
 
     void FixedUpdate()
     {
@@ -22,26 +23,15 @@ public class Player : MonoBehaviour
         MoveRunner(movement);
         if (Input.GetKey(KeyCode.Space) && GroundCheck)
         {
-            animator.SetTrigger("Jump");
-            Rigidbody.AddForce(new Vector3(0, 30, -3) * speed * Time.deltaTime, ForceMode.Impulse);
+            Rigidbody.AddForce(new Vector3(0,120, -3) * speed * Time.deltaTime, ForceMode.Impulse);
         }
-      
-    }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.J))
-        {
-            Debug.Log("J");
-            animator.SetTrigger("Jump");
-        } //Debug.Log(animator.GetBool("Jump"));
     }
 
     void MoveRunner(Vector3 direction)
     {
         var move = (transform.position + (direction * speed * Time.deltaTime));
         var pos = transform.position;
-        if (Mathf.Abs(pos.x) >= 10)
+        if (Mathf.Abs(pos.x) >= 20)
         {
             direction.x = -pos.x*0.01f;
             var an = (transform.position + (direction * speed * Time.deltaTime));
@@ -68,7 +58,6 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == Ground)
         {
-            animator.SetBool("Jump",false);
             GroundCheck = true;
         }
 
@@ -87,6 +76,7 @@ public class Player : MonoBehaviour
         
         if (collision.gameObject.tag == Ground)
         {
+            animator.SetTrigger("Jump");
             GroundCheck = false;
         }
     }
