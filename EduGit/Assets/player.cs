@@ -16,26 +16,23 @@ public class Player : MonoBehaviour
     public bool GroundCheck=true;
     public Animator animator;
     private int flag;
+    
 
-    void FixedUpdate()
+    public void MoveRunner(Vector3 direction)
     {
-        movement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
-        MoveRunner(movement);
-        if (Input.GetKey(KeyCode.Space) && GroundCheck)
-        {
-            Rigidbody.AddForce(new Vector3(0,120, -3) * speed * Time.deltaTime, ForceMode.Impulse);
-        }
-    }
-
-    void MoveRunner(Vector3 direction)
-    {
-        var move = (transform.position + (direction * speed * Time.deltaTime));
+        Vector3 control = new Vector3(direction.x, 0, direction.z);
+        var move = (transform.position + (control * speed * Time.deltaTime));
         var pos = transform.position;
-        if (Mathf.Abs(pos.x) >= 20)
+        if ((direction.y>=0.9) && GroundCheck)
         {
-            direction.x = -pos.x*0.01f;
-            var an = (transform.position + (direction * speed * Time.deltaTime));
+            Rigidbody.AddForce(new Vector3(0,120, -3) * 10 * Time.deltaTime, ForceMode.Impulse);
+        }
+        if (Mathf.Abs(pos.x) >= 16)
+        {
+            control.x = -pos.x*0.01f;
+            var an = (transform.position + (control * speed * Time.deltaTime));
             Rigidbody.MovePosition(an);
+            
             return;
         }
         Rigidbody.MovePosition(move);

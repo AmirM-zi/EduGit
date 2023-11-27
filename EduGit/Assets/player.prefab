@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: -75898893315218815}
-  speed: 10
+  speed: 50
   Hlth: 0
   coin: 0
   ObstacleTag: Obstacle
