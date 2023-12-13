@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,18 +10,17 @@ public class Player : MonoBehaviour
     //public Obstacle Obstacle;
     public Rigidbody Rigidbody;
     public float speed;
-    public int Hlth,coin;
-    public string ObstacleTag,EndLineTag,Coin,Ground;
-    public Vector3 movement;
-    public Action OnEndLine,OnGetPoint,gameOver;
+    public int Hlth;
+    public Action OnGetPoint,gameOver;
     public bool GroundCheck=true;
     public Animator animator;
     private int flag;
+    public TextMeshProUGUI ShowPoint;
     
 
     public void MoveRunner(Vector3 direction)
     {
-        Vector3 control = new Vector3(direction.x, 0, direction.z);
+        Vector3 control = new Vector3(direction.x*1.5f, 0, direction.z);
         var move = (transform.position + (control * speed * Time.deltaTime));
         var pos = transform.position;
         if ((direction.y>=0.9) && GroundCheck)
@@ -40,38 +40,34 @@ public class Player : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.tag);
-        /*if(collision.gameObject.tag==Coin)
+        if(collision.gameObject.tag=="Point")
         {
-            coin = coin + 1;
-            Coin ClollidedCoin = collision.gameObject.GetComponent<Coin>();
-            ClollidedCoin.CoinCatch();
+            Point ClollidedPoint = collision.gameObject.GetComponent<Point>();
+            ClollidedPoint.PointCatch();
             OnGetPoint.Invoke();
-        }*/
-        if(collision.gameObject.tag==EndLineTag)
+        }
+        if(collision.gameObject.tag=="EndLineTag")
         {
-            Destroy(this.gameObject); 
-            OnEndLine.Invoke();
+            gameOver.Invoke();
         }
 
-        if (collision.gameObject.tag == Ground)
+        if (collision.gameObject.tag == "Ground")
         {
             GroundCheck = true;
         }
 
-        /*if (collision.gameObject.tag == ObstacleTag)
+        if (collision.gameObject.tag == "Obstacle")
         {
             Obstacle ClollidedObstacle = collision.gameObject.GetComponent<Obstacle>();
-            ClollidedObstacle.DestroyYourself();
-            Hlth = Hlth - 1;
-            Debug.Log(Hlth);
-            if (Hlth == 0)
+            ClollidedObstacle.DestroyYourSelf();
+            Hlth -= 1;
+            if (Hlth <= 0)
                 gameOver.Invoke();
-        }*/
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
-        
-        if (collision.gameObject.tag == Ground)
+        if (collision.gameObject.tag == "Ground")
         {
             animator.SetTrigger("Jump");
             GroundCheck = false;

@@ -48,16 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: -75898893315218815}
-  speed: 50
-  Hlth: 0
-  coin: 0
-  ObstacleTag: Obstacle
-  EndLineTag: EndLine
-  Coin: Coin
-  Ground: Ground
-  movement: {x: 0, y: 0, z: 0}
+  speed: 80
+  Hlth: 2
+  point: 0
   GroundCheck: 1
   animator: {fileID: 4401236834739172556}
+  ShowPoint: {fileID: 0}
 --- !u!54 &-75898893315218815
 Rigidbody:
   m_ObjectHideFlags: 0
