@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Camera camera;
-    public GameObject FirstPage,player,env,shootingvehicle;
+    public GameObject Menu,Game,player,env,shootingvehicle;
     public Player playerprefab;
     public Vector3 PlayerPos;
     public Vector3 PlayerSpawn;
@@ -20,29 +20,38 @@ public class GameManager : MonoBehaviour
     public ShootingVehicle shootingVehicle;
     public LeanJoystick leanJsRight;
     public LeanJoystick leanJsLeft;
-    private SaveManager saveManager;
-    public int point;
+    public SaveManager saveManager;
+    public int point,Health;
     public TextMeshProUGUI showpoint,showHelth;
-    
+
+    private void Start()
+    {
+        Game.SetActive(false);
+    }
+
     public void Play()
     { 
-        FirstPage.SetActive(false); 
+        Game.SetActive(true);
+        Menu.SetActive(false); 
        env = Instantiate(EnvirementPrefab.gameObject); 
        player = Instantiate(playerprefab.gameObject);
        SetPlayerStartPos(EnvirementPrefab,player);
        shootingvehicle = Instantiate(shootingVehicle.gameObject);
        player.GetComponent<Player>().OnGetPoint += GetPoints;
-       player.GetComponent<Player>().gameOver += GameOver;
-       //point = saveManager.LoadFromJson();
+       player.GetComponent<Player>().OnObctacle += DecreasHealth;
+       player.GetComponent<Player>().OngameOver += GameOver;
+       point = saveManager.LoadFromJson();
+       Debug.Log(point);
        
     }
     public void GameOver()
     { 
-        FirstPage.SetActive(true);
+        Menu.SetActive(true);
+        Game.SetActive(false);
         Destroy(player);
         Destroy(env);
         Destroy(shootingvehicle);
-       // saveManager.SaveToJson(point);
+        saveManager.SaveToJson(point);
 
     }
 
@@ -51,14 +60,21 @@ public class GameManager : MonoBehaviour
         point += 1;
     }
 
+    private void DecreasHealth()
+    {
+        Health -= 1;
+        if (Health<=0)
+            GameOver();
+    }
+
     public void ResetPoints()
     {
-        //saveManager.ResetData();
+        saveManager.ResetData();
     }
     private void Update()
     {
         showpoint.text = point.ToString();
-        showHelth.text = playerprefab.Hlth.ToString();
+        showHelth.text = Health.ToString();
         try
         { 
             PlayerPos = player.transform.position;
@@ -69,10 +85,9 @@ public class GameManager : MonoBehaviour
             return;
         }
         shootingvehicle.transform.SetPositionAndRotation(new Vector3(-50,0,PlayerPos.z+200),Quaternion.Euler(0,0,0));
-        var Shooting = EnvirementPrefab.GetComponent<Shooting>();
-        Shooting.MoveShootingTarget(leanJsLeft.ScaledValue,PlayerPos);
+        env.GetComponent<Shooting>().MoveShootingTarget(leanJsLeft.ScaledValue,PlayerPos);
         Vector3 VehiclePos = shootingvehicle.transform.position;
-        Shooting.LauncherPos(VehiclePos);
+        env.GetComponent<Shooting>().LauncherPos(VehiclePos);
         player.GetComponent<Player>().MoveRunner(new Vector3(leanJsRight.ScaledValue.x,leanJsRight.ScaledValue.y,1));
         
     }

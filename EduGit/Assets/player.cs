@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public Rigidbody Rigidbody;
     public float speed;
     public int Hlth;
-    public Action OnGetPoint,gameOver;
+    public Action OnGetPoint,OngameOver,OnObctacle;
     public bool GroundCheck=true;
     public Animator animator;
     private int flag;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.tag=="EndLineTag")
         {
-            gameOver.Invoke();
+            OngameOver.Invoke();
         }
 
         if (collision.gameObject.tag == "Ground")
@@ -60,9 +60,7 @@ public class Player : MonoBehaviour
         {
             Obstacle ClollidedObstacle = collision.gameObject.GetComponent<Obstacle>();
             ClollidedObstacle.DestroyYourSelf();
-            Hlth -= 1;
-            if (Hlth <= 0)
-                gameOver.Invoke();
+            OnObctacle.Invoke();
         }
     }
     private void OnCollisionExit(Collision collision)
