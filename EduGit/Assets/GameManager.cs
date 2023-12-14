@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
        player.GetComponent<Player>().OnObctacle += DecreasHealth;
        player.GetComponent<Player>().OngameOver += GameOver;
        point = saveManager.LoadFromJson();
-       Debug.Log(point);
        
     }
     public void GameOver()
