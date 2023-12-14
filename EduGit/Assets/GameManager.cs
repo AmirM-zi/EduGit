@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        showpoint.text = point.ToString();
-        showHelth.text = Health.ToString();
+        showpoint.text = "Point:"+point.ToString();
+        showHelth.text = "Health:"+Health.ToString();
         try
         { 
             PlayerPos = player.transform.position;
