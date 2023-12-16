@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
     public Rigidbody Rigidbody;
     public float speed;
     public int Hlth;
-    public Action OnGetPoint,OngameOver,OnObctacle;
+    public Action OnGetPoint,OngameOver,OnObctacle,OnRoadSpawn;
     public bool GroundCheck=true;
     public Animator animator;
     private int flag;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         var pos = transform.position;
         if ((direction.y>=0.9) && GroundCheck)
         {
+            animator.SetTrigger("Jump");
             Rigidbody.AddForce(new Vector3(0,120, -3) * 10 * Time.deltaTime, ForceMode.Impulse);
         }
         if (Mathf.Abs(pos.x) >= 16)
@@ -67,8 +69,15 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            animator.SetTrigger("Jump");
             GroundCheck = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "RoadSpawn")
+        {
+            OnRoadSpawn.Invoke();
         }
     }
 }

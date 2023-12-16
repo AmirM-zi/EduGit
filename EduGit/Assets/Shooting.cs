@@ -18,18 +18,23 @@ public class Shooting : MonoBehaviour
     {
         Vector3 ShootSpot = ShootingWeapon.transform.position;
         GameObject bullet = Instantiate(Bullet,ShootSpot,Quaternion.Euler(0,0,0));
-        bullet.transform.DOMove(new Vector3(Target.x,Target.y,Target.z), 0.5f).OnComplete(() => Destroy(bullet));
+        bullet.transform.DOMove(new Vector3(Target.x,Target.y,Target.z+200), 1f).OnComplete(() => Destroy(bullet));
     }
 
     public void MoveShootingTarget(Vector2 JoyStickValue,Vector3 Pos)
     {
-        Vector3 JoyStickValueV3 = new Vector3(JoyStickValue.x,0 , JoyStickValue.y);
+        Vector3 JoyStickValueV3 = new Vector3(JoyStickValue.x,JoyStickValue.y,0 );
         Vector3 SP = ShootPoint.transform.position;
-        var move = (new Vector3(SP.x,SP.y,(JoyStickValue.y*100)+Pos.z+250) + (JoyStickValueV3 * 180f * Time.deltaTime));//Shoot Point limit Surface and speed
+        var move = new Vector3(SP.x,SP.y,Pos.z+300) + (JoyStickValueV3 * 300f * Time.deltaTime);//Shoot Point limit Surface and speed
         ShootPoint.GetComponent<Rigidbody>().MovePosition(move);
         if (Mathf.Abs(SP.x) >= 18)
         {
             var an = (SP + (new Vector3(-SP.x,0,0) * 5f * Time.deltaTime));
+            ShootPoint.GetComponent<Rigidbody>().MovePosition(an);
+        }
+        if (Mathf.Abs(SP.y) >= 18)
+        {
+            var an = (SP + (new Vector3(0,-SP.y,0) * 5f * Time.deltaTime));
             ShootPoint.GetComponent<Rigidbody>().MovePosition(an);
         }
     }

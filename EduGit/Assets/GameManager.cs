@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public SaveManager saveManager;
     public int point,Health;
     public TextMeshProUGUI showpoint,showHelth;
+    private RoadSpawner roadSpawner;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
        player.GetComponent<Player>().OnGetPoint += GetPoints;
        player.GetComponent<Player>().OnObctacle += DecreasHealth;
        player.GetComponent<Player>().OngameOver += GameOver;
+       player.GetComponent<Player>().OnRoadSpawn += RoadSpawn;
        point = saveManager.LoadFromJson();
        
     }
@@ -69,6 +71,11 @@ public class GameManager : MonoBehaviour
     public void ResetPoints()
     {
         saveManager.ResetData();
+    }
+
+    void RoadSpawn()
+    {
+        GetComponent<RoadSpawner>().MoveRoad();
     }
     private void Update()
     {
