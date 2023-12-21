@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9028571379208738903}
+  - component: {fileID: 3981854152170712766}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -31,3 +32,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3981854152170712766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346663287403398476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fc734376fc25f4cbca0ab875ec8f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 3981854152170712766}
+  obstacle:
+  - {fileID: 3959083455031459852, guid: c881ffe1e90db8b44a0b983fa82dfc3d, type: 3}
+  - {fileID: 3959083455031459852, guid: aba9116d5285451478bda0f8587f0cb5, type: 3}
+  - {fileID: 3959083455031459852, guid: 5d0027d818e75a244b226ef8234dd649, type: 3}
+  - {fileID: 3959083455031459852, guid: c19a3b2ac0ab8694a98c24cca6762bf3, type: 3}
+  - {fileID: 3959083455031459852, guid: 682244c0bcff2024f9df9e6075461ad3, type: 3}
+  - {fileID: 3959083455031459852, guid: 58b542d175afeb14e94e59472260098e, type: 3}
+  - {fileID: 3959083455031459852, guid: 13ef4e2fdf1183d43ac762f5e40edabe, type: 3}

@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
     public float Hit;
     public Slider Slider;
     public TextMeshProUGUI text;
+    public GameObject HealthPoint;
 
     private void Start()
     {
@@ -31,7 +32,9 @@ public class Obstacle : MonoBehaviour
         text.text = Hit.ToString();
         if (Hit <= 0)
         {
+            Instantiate(HealthPoint,transform.position,Quaternion.identity);
             Destroy(this.gameObject);
+            
         }
     }
     

@@ -9,10 +9,12 @@ using Lean.Gui;
 using TMPro;
 using UnityEditor;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
 public class GameManager : MonoBehaviour
 {
     public Camera camera;
-    public GameObject Menu,Game,player,env,shootingvehicle;
+    public GameObject Menu,Game,player,env,shootingvehicle,lvl;
     public Player playerprefab;
     public Vector3 PlayerPos;
     public Vector3 PlayerSpawn;
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
     public int point,Health;
     public TextMeshProUGUI showpoint,showHelth;
     private RoadSpawner roadSpawner;
+    public Level level;
+    
 
     private void Start()
     {
@@ -34,7 +38,7 @@ public class GameManager : MonoBehaviour
     { 
         Game.SetActive(true);
         Menu.SetActive(false); 
-       env = Instantiate(EnvirementPrefab.gameObject); 
+       env = Instantiate(EnvirementPrefab.gameObject);
        player = Instantiate(playerprefab.gameObject);
        SetPlayerStartPos(EnvirementPrefab,player);
        shootingvehicle = Instantiate(shootingVehicle.gameObject);
@@ -43,15 +47,19 @@ public class GameManager : MonoBehaviour
        player.GetComponent<Player>().OngameOver += GameOver;
        player.GetComponent<Player>().OnRoadSpawn += RoadSpawn;
        point = saveManager.LoadFromJson();
-       
+       level.ObstaclePlace();
+       lvl = Instantiate(level.gameObject);
     }
     public void GameOver()
-    { 
+    {
+        Health = 5;
         Menu.SetActive(true);
         Game.SetActive(false);
         Destroy(player);
         Destroy(env);
         Destroy(shootingvehicle);
+        Destroy(lvl);
+        GetComponent<RoadSpawner>().ResetRoads();
         saveManager.SaveToJson(point);
 
     }
@@ -59,6 +67,7 @@ public class GameManager : MonoBehaviour
     private void GetPoints()
     {
         point += 1;
+        Health += 1;
     }
 
     private void DecreasHealth()

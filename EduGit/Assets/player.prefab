@@ -50,7 +50,6 @@ MonoBehaviour:
   Rigidbody: {fileID: -75898893315218815}
   speed: 80
   Hlth: 2
-  point: 0
   GroundCheck: 1
   animator: {fileID: 4401236834739172556}
   ShowPoint: {fileID: 0}

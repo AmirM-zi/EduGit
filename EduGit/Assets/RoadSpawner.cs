@@ -18,10 +18,18 @@ public class RoadSpawner : MonoBehaviour
     {
         GameObject movedRoad = Roads[0];
         Roads.Remove(movedRoad);
-        float newZ = Roads[Roads.Count - 1].transform.position.z + 500;
+        float newZ = Roads[Roads.Count - 1].transform.position.z + 420;
         movedRoad.transform.position = new Vector3(0, 0, newZ);
         Roads.Add(movedRoad);
     }
 
+    public void ResetRoads()
+    {
+        for (int i = 0; i < Roads.Count; i++)
+        {
+            Roads[i].transform.SetPositionAndRotation(new Vector3(0,0,i*500),Quaternion.identity);
+        }
+    }
+    
 
 }

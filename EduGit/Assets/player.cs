@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,13 +22,16 @@ public class Player : MonoBehaviour
 
     public void MoveRunner(Vector3 direction)
     {
-        Vector3 control = new Vector3(direction.x*1.5f, 0, direction.z);
+        Vector3 control = new Vector3(direction.x, 0, direction.z);
         var move = (transform.position + (control * speed * Time.deltaTime));
         var pos = transform.position;
-        if ((direction.y>=0.9) && GroundCheck)
+        if ((direction.y>=0.8) && GroundCheck)
         {
+            Debug.Log("Jumpid");
             animator.SetTrigger("Jump");
-            Rigidbody.AddForce(new Vector3(0,120, -3) * 10 * Time.deltaTime, ForceMode.Impulse);
+           //Rigidbody.AddForce(new Vector3(0,120, -3) * 10 * Time.deltaTime, ForceMode.Impulse);
+           transform.DOMove(new Vector3(pos.x,pos.y+3,pos.z), 1f);
+           
         }
         if (Mathf.Abs(pos.x) >= 16)
         {
