@@ -8,7 +8,7 @@ public class ShootingVehicle : MonoBehaviour
     public void GetMove(Vector3 pos)
     {
         transform = GetComponent<Transform>();
-        transform.SetPositionAndRotation(new Vector3(-50,0,pos.z+200),Quaternion.Euler(0,0,0));
+        //transform.SetPositionAndRotation(new Vector3(-50,0,pos.z+500),Quaternion.Euler(0,0,0));
     }
     
     

@@ -13,7 +13,7 @@ public class Level : MonoBehaviour
         for (int i = 0; i <= 100; i++)
         {
              Position.z = Random.Range(0, 5000);
-             Position.x = Random.Range(-10, 10);
+             Position.x = Random.Range(-15, 15);
              Position.y = Random.Range(0, 5);
              Instantiate(obstacle[Random.Range(0,6)],Position,Quaternion.Euler(0,0,0));
         }

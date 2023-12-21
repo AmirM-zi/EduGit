@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        shootingvehicle.transform.SetPositionAndRotation(new Vector3(-50,0,PlayerPos.z+200),Quaternion.Euler(0,0,0));
+        shootingvehicle.transform.SetPositionAndRotation(new Vector3(-50,0,PlayerPos.z+220),Quaternion.Euler(0,0,0));
         env.GetComponent<Shooting>().MoveShootingTarget(leanJsLeft.ScaledValue,PlayerPos);
         Vector3 VehiclePos = shootingvehicle.transform.position;
         env.GetComponent<Shooting>().LauncherPos(VehiclePos);

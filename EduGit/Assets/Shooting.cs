@@ -25,14 +25,14 @@ public class Shooting : MonoBehaviour
     {
         Vector3 JoyStickValueV3 = new Vector3(JoyStickValue.x,JoyStickValue.y,0 );
         Vector3 SP = ShootPoint.transform.position;
-        var move = new Vector3(SP.x,SP.y,Pos.z+300) + (JoyStickValueV3 * 300f * Time.deltaTime);//Shoot Point limit Surface and speed
+        var move = new Vector3(SP.x,SP.y,Pos.z+300) + (JoyStickValueV3 * 500f * Time.deltaTime);//Shoot Point limit Surface and speed
         ShootPoint.GetComponent<Rigidbody>().MovePosition(move);
-        if (Mathf.Abs(SP.x) >= 18)
+        if ((SP.x < -13)||(SP.x > 100))
         {
             var an = (SP + (new Vector3(-SP.x,0,0) * 5f * Time.deltaTime));
             ShootPoint.GetComponent<Rigidbody>().MovePosition(an);
         }
-        if (Mathf.Abs(SP.y) >= 18)
+        if (Mathf.Abs(SP.y) >= 100)
         {
             var an = (SP + (new Vector3(0,-SP.y,0) * 5f * Time.deltaTime));
             ShootPoint.GetComponent<Rigidbody>().MovePosition(an);
@@ -45,6 +45,6 @@ public class Shooting : MonoBehaviour
 
     public void LauncherPos(Vector3 pos)
     {
-        ShootingWeapon.transform.SetPositionAndRotation(new Vector3(pos.x+5,pos.y+30,pos.z-150) ,Quaternion.identity);
+        ShootingWeapon.transform.SetPositionAndRotation(new Vector3(pos.x+5,pos.y+30,pos.z-180) ,Quaternion.identity);
     }
 }
