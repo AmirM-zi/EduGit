@@ -18,7 +18,7 @@ public class RoadSpawner : MonoBehaviour
     {
         GameObject movedRoad = Roads[0];
         Roads.Remove(movedRoad);
-        float newZ = Roads[Roads.Count - 1].transform.position.z + 420;
+        float newZ = Roads[Roads.Count - 1].transform.position.z + 450;
         movedRoad.transform.position = new Vector3(0, 0, newZ);
         Roads.Add(movedRoad);
     }
@@ -27,7 +27,7 @@ public class RoadSpawner : MonoBehaviour
     {
         for (int i = 0; i < Roads.Count; i++)
         {
-            Roads[i].transform.SetPositionAndRotation(new Vector3(0,0,i*500),Quaternion.identity);
+            Roads[i].transform.SetPositionAndRotation(new Vector3(0,0,i*450),Quaternion.identity);
         }
     }
     

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 3981854152170712766}
-  obstacle:
+  Ghostobstacle:
   - {fileID: 3959083455031459852, guid: c881ffe1e90db8b44a0b983fa82dfc3d, type: 3}
   - {fileID: 3959083455031459852, guid: aba9116d5285451478bda0f8587f0cb5, type: 3}
   - {fileID: 3959083455031459852, guid: 5d0027d818e75a244b226ef8234dd649, type: 3}
@@ -53,3 +53,4 @@ MonoBehaviour:
   - {fileID: 3959083455031459852, guid: 682244c0bcff2024f9df9e6075461ad3, type: 3}
   - {fileID: 3959083455031459852, guid: 58b542d175afeb14e94e59472260098e, type: 3}
   - {fileID: 3959083455031459852, guid: 13ef4e2fdf1183d43ac762f5e40edabe, type: 3}
+  Obstacle: {fileID: 8793847192716907071, guid: f937b68327d5f6545b11c9371d82addf, type: 3}

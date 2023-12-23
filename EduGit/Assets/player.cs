@@ -14,25 +14,31 @@ public class Player : MonoBehaviour
     public float speed;
     public int Hlth;
     public Action OnGetPoint,OngameOver,OnObctacle,OnRoadSpawn;
-    public bool GroundCheck=true;
     public Animator animator;
     private int flag;
     public TextMeshProUGUI ShowPoint;
+    private bool GC;
     
 
     public void MoveRunner(Vector3 direction)
     {
         Vector3 control = new Vector3(direction.x, 0, direction.z);
-        var move = (transform.position + (control * speed * Time.deltaTime));
+        var move = (transform.position + (control * speed * Time.deltaTime)); 
         var pos = transform.position;
-        if ((direction.y>=0.8) && GroundCheck)
+        bool flag = true;
+        GC = GroundCheck();
+        //if ((direction.y>=0.8) && GroundCheck && flag)
+        if (Input.GetKey(KeyCode.A) && GC && flag)
         {
-            Debug.Log("Jumpid");
+            flag = false;
+            Physics.gravity = new Vector3(0, -100, 0);
             animator.SetTrigger("Jump");
-           //Rigidbody.AddForce(new Vector3(0,120, -3) * 10 * Time.deltaTime, ForceMode.Impulse);
-           transform.DOMove(new Vector3(pos.x,pos.y+3,pos.z), 1f);
-           
+            Rigidbody.velocity = new Vector3(0,10, 0) ;
+            //Rigidbody.AddForce(new Vector3(0,120, -3) * 10 * Time.deltaTime, ForceMode.Impulse);
+            //transform.DOMove(new Vector3(pos.x,pos.y+3,pos.z+20), 0.5f);
+            flag = true; 
         }
+        Physics.gravity = new Vector3(0, -9.8f, 0);
         if (Mathf.Abs(pos.x) >= 16)
         {
             control.x = -pos.x*0.01f;
@@ -56,11 +62,7 @@ public class Player : MonoBehaviour
         {
             OngameOver.Invoke();
         }
-
-        if (collision.gameObject.tag == "Ground")
-        {
-            GroundCheck = true;
-        }
+        
 
         if (collision.gameObject.tag == "Obstacle")
         {
@@ -69,12 +71,14 @@ public class Player : MonoBehaviour
             OnObctacle.Invoke();
         }
     }
-    private void OnCollisionExit(Collision collision)
+    private bool GroundCheck()
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            GroundCheck = false;
-        }
+        Vector3 dwn = transform.TransformDirection(Vector3.down);
+        if (Physics.Raycast(transform.position, dwn, 0.6f))
+            GC = true;
+        else
+            GC = false;
+        return GC;
     }
 
     private void OnTriggerEnter(Collider other)

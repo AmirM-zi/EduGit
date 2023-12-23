@@ -48,9 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: -75898893315218815}
-  speed: 80
+  speed: 174
   Hlth: 2
-  GroundCheck: 1
   animator: {fileID: 4401236834739172556}
   ShowPoint: {fileID: 0}
 --- !u!54 &-75898893315218815
