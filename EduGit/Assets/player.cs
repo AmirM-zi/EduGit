@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     //public Obstacle Obstacle;
     public Rigidbody Rigidbody;
     public float speed;
-    public int Hlth;
     public Action OnGetPoint,OngameOver,OnObctacle,OnRoadSpawn;
     public Animator animator;
     private int flag;
@@ -27,8 +26,8 @@ public class Player : MonoBehaviour
         var pos = transform.position;
         bool flag = true;
         GC = GroundCheck();
-        //if ((direction.y>=0.8) && GroundCheck && flag)
-        if (Input.GetKey(KeyCode.A) && GC && flag)
+        if ((direction.y>=0.8) && GC && flag)
+        //if (Input.GetKey(KeyCode.A) && GC && flag)
         {
             flag = false;
             Physics.gravity = new Vector3(0, -100, 0);
@@ -51,7 +50,7 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
+       // Debug.Log(collision.gameObject.tag);
         if(collision.gameObject.tag=="Point")
         {
             Point ClollidedPoint = collision.gameObject.GetComponent<Point>();
@@ -67,6 +66,13 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             Obstacle ClollidedObstacle = collision.gameObject.GetComponent<Obstacle>();
+            ClollidedObstacle.DestroyYourSelf();
+            OnObctacle.Invoke();
+        }
+        
+        if (collision.gameObject.tag == "JumpObstacle")
+        {
+            JumpObstacle ClollidedObstacle = collision.gameObject.GetComponent<JumpObstacle>();
             ClollidedObstacle.DestroyYourSelf();
             OnObctacle.Invoke();
         }

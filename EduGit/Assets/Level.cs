@@ -6,7 +6,7 @@ public class Level : MonoBehaviour
 {
     public Level level;
     public List<GameObject> Ghostobstacle;
-    public GameObject Obstacle;
+    public GameObject JumpObstacle;
     // Start is called before the first frame update
     public void ObstaclePlace()
     {
@@ -22,7 +22,7 @@ public class Level : MonoBehaviour
         {
             Position.x = Random.Range(-15, 15);
             Position.z = Random.Range(0, 5000); 
-            Instantiate(Obstacle,Position,Quaternion.Euler(0,0,0)); 
+            Instantiate(JumpObstacle,Position,Quaternion.Euler(0,0,0)); 
         }
     }
 }

@@ -53,4 +53,4 @@ MonoBehaviour:
   - {fileID: 3959083455031459852, guid: 682244c0bcff2024f9df9e6075461ad3, type: 3}
   - {fileID: 3959083455031459852, guid: 58b542d175afeb14e94e59472260098e, type: 3}
   - {fileID: 3959083455031459852, guid: 13ef4e2fdf1183d43ac762f5e40edabe, type: 3}
-  Obstacle: {fileID: 8793847192716907071, guid: f937b68327d5f6545b11c9371d82addf, type: 3}
+  JumpObstacle: {fileID: 8793847192716907071, guid: f937b68327d5f6545b11c9371d82addf, type: 3}

@@ -25,16 +25,15 @@ public class Obstacle : MonoBehaviour
         Destroy(this.gameObject);
     }
     void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
-            Hit -= 1 ;
+    { 
+        if (collision.gameObject.tag == "Bullet") 
+            Hit -= 1;
         Slider.value = Hit;
         text.text = Hit.ToString();
         if (Hit <= 0)
         {
-            Instantiate(HealthPoint,transform.position,Quaternion.identity);
-            Destroy(this.gameObject);
-            
+            Instantiate(HealthPoint, transform.position, Quaternion.identity);
+            Destroy(this.gameObject); 
         }
     }
     

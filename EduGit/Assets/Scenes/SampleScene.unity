@@ -472,7 +472,7 @@ MonoBehaviour:
   leanJsLeft: {fileID: 6880950041268110867}
   saveManager: {fileID: 741967638}
   point: 0
-  Health: 5
+  Health: 100
   showpoint: {fileID: 3720513537819713948}
   showHelth: {fileID: 8452317381483149721}
   level: {fileID: 3981854152170712766, guid: bdf75dd94221f0f4894fd2a5bb8fa26e, type: 3}

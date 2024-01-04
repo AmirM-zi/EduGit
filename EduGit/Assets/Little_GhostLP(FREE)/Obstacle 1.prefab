@@ -244,6 +244,7 @@ MonoBehaviour:
   Slider: {fileID: 8867384957334005505}
   text: {fileID: 8028299045437648736}
   HealthPoint: {fileID: 3623001825773475142, guid: 2feb3a6675624a545993b283680a0da6, type: 3}
+  TypeOfObstacle: Ghost
 --- !u!54 &7989801707787103188
 Rigidbody:
   m_ObjectHideFlags: 0

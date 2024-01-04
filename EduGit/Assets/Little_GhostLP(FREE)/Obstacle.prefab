@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8323755717364224602}
-  - component: {fileID: 6933822245042254227}
+  - component: {fileID: 6825754684651440387}
   - component: {fileID: 7989801707787103188}
   - component: {fileID: 5582710578184102197}
   m_Layer: 0
@@ -228,7 +228,7 @@ Transform:
   - {fileID: 2951219760833106561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6933822245042254227
+--- !u!114 &6825754684651440387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a3e1626d82de84d892fa9602e52d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hit: 80
+  Hit: 130
   Slider: {fileID: 8867384957334005505}
   text: {fileID: 8028299045437648736}
   HealthPoint: {fileID: 3623001825773475142, guid: 2feb3a6675624a545993b283680a0da6, type: 3}

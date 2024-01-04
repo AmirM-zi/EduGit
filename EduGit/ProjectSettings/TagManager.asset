@@ -8,8 +8,9 @@ TagManager:
   - Bullet
   - Obstacle
   - Point
-  - Obtacle
   - RoadSpawn
+  - JumpObstacle
+  - Obtacle
   layers:
   - Default
   - TransparentFX
